@@ -300,3 +300,112 @@ VALUES
 ;
 
 
+-- create a new database called soft uni
+CREATE DATABASE `soft_uni`;
+
+-- use softuni database
+USE `soft_uni`;
+
+-- create table towns with id and name
+CREATE TABLE `towns` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(30)
+);
+
+-- create table addresses with id, address_text, town_id
+CREATE TABLE `addresses` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `address_text` VARCHAR(30),
+    `town_id` INT
+);
+
+-- create table departments with id, name
+CREATE TABLE `departments` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(30)
+);
+
+-- create table employees with id, first_name, middle_name, last_name, job_title, department_id, hire_date, salary, address_id 
+CREATE TABLE `employees` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `first_name` VARCHAR(30) NOT NULL,
+    `middle_name` VARCHAR(30),
+    `last_name` VARCHAR(30) NOT NULL,
+    `job_title` VARCHAR(30) NOT NULL,
+    `department_id` INT NOT NULL,
+    `hire_date` DATE,
+    `salary` FLOAT,
+    `address_id` INT    
+);
+
+-- insert data into towns table
+INSERT INTO `towns` (`name`)
+VALUES
+    ('Sofia'),
+    ('Plovdiv'),
+    ('Varna'),
+    ('Burgas')
+;
+
+-- insert data into departments table
+INSERT INTO `departments` (`name`)
+VALUES
+    ('Engineering'), 
+    ('Sales'), 
+    ('Marketing'), 
+    ('Software Development'), 
+    ('Quality Assurance')
+;
+
+-- insert data into employees table
+INSERT INTO `employees` (`first_name`, `middle_name`, `last_name`, `job_title`, `department_id`, `hire_date`, `salary`)
+VALUES
+    ("Ivan", "Ivanov", "Ivanov", ".NET Developer",	4,	"2013-02-01", 3500.00),
+    ("Petar", "Petrov", "Petrov", "Senior Engineer", 1,	"2004-03-02", 4000.00),
+    ("Maria", "Petrova", "Ivanova", "Intern", 5, "2016-08-28", 525.25),
+	("Georgi", "Terziev", "Ivanov",	"CEO", 2, "2007-12-09", 3000.00),
+    ("Peter", "Pan", "Pan", "Intern", 3, "2016-08-28", 599.88)
+;
+
+-- select all records from towns table
+SELECT * FROM `towns`;
+
+-- select all records from departments table
+SELECT * FROM `departments`;
+
+-- select all records from employees table
+SELECT * FROM `employees`;
+
+-- select all records from towns table and order them by name alphabetically
+SELECT * FROM `towns`
+ORDER BY `name` ASC;
+
+-- select all records from departments table and order them by name alphabetically
+SELECT * FROM `departments`
+ORDER BY `name` ASC;
+
+-- select all records from employees table and order them by salary in descending
+SELECT * FROM `employees`
+ORDER BY `salary` DESC;
+
+-- select name coulmn from towns table and order them by name alphabetically
+SELECT `name` FROM `towns`
+ORDER BY `name` ASC;
+
+-- select name coulmn from departments table and order them by name alphabetically
+SELECT `name` FROM `departments`
+ORDER BY `name` ASC;
+
+-- select all records from employees table and order them by salary in descending
+SELECT `first_name`, `last_name`, `job_title`, `salary` FROM `employees`
+ORDER BY `salary` DESC;
+
+-- increase the salary of all employees by 10%
+UPDATE `employees` 
+SET `salary` = `salary` * 1.1;
+
+-- select only salary column from the employees table
+SELECT `salary` FROM `employees`;
+
+-- delete all data from employees table
+TRUNCATE TABLE `employees`;
